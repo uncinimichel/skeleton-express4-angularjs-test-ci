@@ -1,7 +1,17 @@
 language: node_js
+
+cache: bundler
+rvm:
+  - jruby
+  - 2.0.0
+
 node_js:
   - '0.8'
   - '0.10'
+
 before_script:
   - 'npm install -g bower grunt-cli'
   - 'bower install'
+
+script:
+  - 'grunt test'
