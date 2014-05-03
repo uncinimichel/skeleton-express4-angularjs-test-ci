@@ -13,9 +13,7 @@ env:
 
 
 before_script:
-  - 'npm install -g bower grunt-cli'
-  - 'bower install'
-  - 'bundle install'
+  - 'reset.sh'
 #  To run  a real browser (Firefox) with a virtual screen.
   - 'export DISPLAY=:99.0'
   - 'sh -e /etc/init.d/xvfb start'
