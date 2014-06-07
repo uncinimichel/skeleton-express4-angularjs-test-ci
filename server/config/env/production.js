@@ -1,8 +1,12 @@
 'use strict';
+var DBmanager = require('../../controllers/mongo/mongo-db-manager').dbManager;
+
+var uriDB = "An uri",
+    dbManager = new DBmanager(uriDB);
 
 module.exports = {
-    env: 'production',
-    port: process.env.VCAP_APP_PORT || 3000,
+    env: 'development',
     session: {
-    }
+    },
+    DBmanager: dbManager
 };

@@ -9,7 +9,23 @@ var express = require('express'),
     logger = require('morgan'),
     methodOverride = require('method-override'),
     errorHandler = require('errorhandler'),
-    session = require('express-session');
+    session = require('express-session'),
+    passport = require('passport'),
+    UserModel = require('../controllers/users/user-model');
+
+passport.serializeUser(function (user, done) {
+    console.log('USER MATE: SER ', user);
+    done(null, user._id);
+});
+
+passport.deserializeUser(function (id, done) {
+    console.log('USER MATE:DES ', id);
+
+    UserModel.findById(id, function (err, user) {
+        console.log('DESDES find ', user);
+        done(err, user);
+    });
+});
 
 function _commonConfig(app) {
     app.engine('html', require('ejs').renderFile);
@@ -17,17 +33,20 @@ function _commonConfig(app) {
     app.use(logger('dev'));
     app.use(methodOverride());
     app.use(cookieParser());
+    app.use(express.static(path.join(config.root, 'app')));
+    app.use(bodyParser());
 
-    app.use(express.session({
+    app.set('views', config.root + '/public');
+    app.use(session({
             secret: config.session.secret
         }
     ));
+    app.use(passport.initialize());
+    app.use(passport.session());
 
 }
 function _setProdConfig(app) {
     app.use(favicon(path.join(config.root, 'public', 'favicon.ico')));
-    app.use(express.static(path.join(config.root, 'public')));
-    app.set('views', config.root + '/public');
 }
 function _setDevConfig(app) {
     app.use(require('connect-livereload')());
@@ -43,16 +62,15 @@ function _setDevConfig(app) {
     });
 
     app.use(express.static(path.join(config.root, '.tmp')));
-    app.use(express.static(path.join(config.root, 'app')));
     app.use(errorHandler());
-    app.set('views', config.root + '/app');
+
 }
 /**
  * Express configuration
  */
 module.exports = function (app) {
 
-    var env = process.NODE_ENV;
+    var env = process.env.NODE_ENV;
 
     _commonConfig(app);
     if (env === 'production') {
