@@ -25,6 +25,7 @@ module.exports = function (app) {
 
     app.get('/partials/*', index.partials);
     app.get('/awesomeThings', webapi.awesomeThings);
+    app.get('/', index.index);
 
     loginLocal.useStrategy();
 

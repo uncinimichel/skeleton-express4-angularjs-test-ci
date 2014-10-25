@@ -34,11 +34,15 @@ function _commonConfig(app) {
     app.use(methodOverride());
     app.use(cookieParser());
     app.use(express.static(path.join(config.root, 'app')));
-    app.use(bodyParser());
+    app.use(bodyParser.urlencoded({
+        extended: true
+    }));
+    app.use(bodyParser.json());
 
-    app.set('views', config.root + '/public');
     app.use(session({
-            secret: config.session.secret
+            secret: config.session.secret,
+            saveUninitialized: true,
+            resave: true
         }
     ));
     app.use(passport.initialize());
