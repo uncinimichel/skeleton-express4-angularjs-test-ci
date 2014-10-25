@@ -28,7 +28,7 @@
     "passport": "^0.2.1",
     "bcrypt": "^0.8.0",
     "passport-local": "^1.0.0",
-    "mongoose": "^3.8.18"
+    "mongoose": "^3.8.x"
   },
   "devDependencies": {
     "grunt": "~0.4.5",
@@ -40,6 +40,7 @@
     "grunt-contrib-concat": "~0.5.0",
     "grunt-contrib-cssmin": "~0.10.0",
     "grunt-contrib-htmlmin": "~0.3.0",
+    "grunt-contrib-copy": "~0.7.x",
     "jpegtran-bin": "2.0.0",
     "grunt-contrib-imagemin": "~0.9.0",
     "grunt-contrib-jshint": "~0.10.0",
@@ -96,7 +97,8 @@
     "gulp-minify-html": "^0.1.6",
     "gulp-ngmin": "^0.3.0",
     "gulp-rev": "^2.0.1",
-    "gulp-sass": "^1.2.0"
+    "gulp-sass": "^1.2.0",
+    "grunt-concurrent": "^1.0.0"
   },
   "engines": {
     "node": ">=0.10.0"

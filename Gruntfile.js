@@ -399,8 +399,6 @@ module.exports = function (grunt) {
                 'compass'
             ],
             dist: [
-                'compass:dist',
-                //  'imagemin',
                 'svgmin',
                 'htmlmin'
             ]
@@ -570,7 +568,6 @@ module.exports = function (grunt) {
 
     grunt.registerTask('default', [
         'newer:jshint',
-        'test-all',
         'build'
     ]);
 

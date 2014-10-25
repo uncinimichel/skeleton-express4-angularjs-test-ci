@@ -1,3 +1,4 @@
+#!/bin/sh
 CWD=$(pwd)
 REPO=$(git rev-parse --show-toplevel)
 
